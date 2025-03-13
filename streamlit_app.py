@@ -245,7 +245,7 @@ def main():
         with st.expander("🤖 Como o SVM Funciona?", expanded=True):
             col1, col2 = st.columns([1, 2])
             with col1:
-                st.image("images/svmFronteiraLinear",
+                st.image("images/SvmFronteiraLinear.png",
                          caption="SVM separando classes com margem máxima")
             with col2:
                 st.markdown("""
@@ -309,7 +309,7 @@ def main():
                  - ➕ Aumenta chance de malignidade
                  - ➖ Reduz chance de malignidade
                   """)
-                st.image("images/shap")
+                st.image("images/shap.png")
 
             with tab_lime:
                 st.markdown("""
@@ -319,7 +319,7 @@ def main():
                 - Azul → características que contradizem a predição
                 - Mostra o peso relativo de cada fator
                 """)
-                st.image("images/limeEx",
+                st.image("images/limeEx.png",
                          caption="Exemplo de explicação LIME")
 
         with st.expander("🧬 Glossário de Características"):
