@@ -2,7 +2,8 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
 import seaborn as sns
 import shap
 import time
@@ -18,7 +19,7 @@ import lime
 import lime.lime_tabular
 import os
 
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"  # Reduz logs do TensorFlow
+os.environ["LD_LIBRARY_PATH"] = os.getenv("LD_LIBRARY_PATH", "") + ":/usr/lib/x86_64-linux-gnu"  # Reduz logs do TensorFlow
 
 
 
@@ -172,14 +173,14 @@ def main():
 
         col1, col2 = st.columns(2)
         with col1:
-            st.subheader("Distribuição das Classes( Exemplo com od dados de teste:")
+            st.subheader("Distribuição das Classes( Exemplo com os dados de teste:")
             class_dist = pd.Series(y).map({0: 'Maligno', 1: 'Benigno'}).value_counts()
             fig, ax = plt.subplots()
             class_dist.plot.pie(autopct='%1.1f%%', ax=ax)
             st.pyplot(fig)
 
         with col2:
-            st.subheader("Visualização PCA (teste exemplo")
+            st.subheader("Visualização PCA (teste exemplo)")
             fig = plot_decision_boundary(pca_result, y)
             st.pyplot(fig)
 
