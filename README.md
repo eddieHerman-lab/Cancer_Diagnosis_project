@@ -10,7 +10,7 @@ Analise de diagnostico de Câncer de mama
 ![LIME](https://img.shields.io/badge/LIME-00CC66?style=for-the-badge)
 
 Um sistema de apoio a diagnóstico de câncer de mama utilizando Support Vector Machines (SVM) com técnicas  de Machine Learning, explicabilidade (SHAP e LIME) e visualização interativa.
-Este projeto tem como objetivo utilizar técnicas de Machine Learning para classificar tumores mamários em benignos e malignos com base no dataset "Breast Cancer Wisconsin". A abordagem principal utiliza Support Vector Machines (SVM) combinadas com calibração de probabilidades para fornecer previsões mais confiáveis, essenciais em contextos clínicos.
+Este projeto tem como objetivo  classificar tumores mamários em benignos e malignos com base no dataset "Breast Cancer Wisconsin". A abordagem principal utiliza Support Vector Machines (SVM) combinadas com calibração de probabilidades para fornecer previsões mais confiáveis, essenciais em contextos clínicos.
 
 ## 📌 Visão Geral
 
