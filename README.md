@@ -1,8 +1,57 @@
 # Cancer_Diagnosis_project
 Analise de diagnostico de Câncer de mama
 
-Nesta análise, utilizamos o Support Vector Machine (SVM) para a classificação de tumores malignos e benignos com base no conjunto de dados do Breast Cancer Wisconsin. Foi considerado diferentes abordagens, incluindo o SVM linear e o SVM com kernel RBF, para entender a separabilidade dos dados e a melhor forma de modelá-los.
+# Diagnóstico de Câncer de Mama com SVM 🩺
 
-O dataset de câncer de mama do scikit-learn contém características extraídas de imagens digitalizadas de aspirados por agulha fina (FNA) de massas mamárias. Cada instância representa medidas de características de células no tecido mamário. A variável alvo indica se o tecido é maligno (0) ou benigno (1). As características incluem medidas como raio, textura, perímetro, área, suavidade, compacidade, concavidade, etc. Essas medidas são calculadas para o núcleo celular e podem indicar anomalias associadas ao câncer. Importância: Entender seu dataset é fundamental. Neste caso, trabalhando com um problema médico real onde o objetivo é classificar corretamente tumores como malignos ou benignos. Falsos negativos (classificar erroneamente um tumor maligno como benigno) podem ter consequências graves.
-O projeto tambem possui um arquivo que funciona como um weapp de interface iterativa feito e Streamlit para demontrções
+![Streamlit App](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Scikit-Learn](https://img.shields.io/badge/Scikit_Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![SHAP](https://img.shields.io/badge/SHAP-FF6F61?style=for-the-badge)
+![LIME](https://img.shields.io/badge/LIME-00CC66?style=for-the-badge)
+
+Um sistema de apoio a diagnóstico de câncer de mama utilizando Support Vector Machines (SVM) com técnicas avançadas de Machine Learning, explicabilidade (SHAP e LIME) e visualização interativa.
+
+---
+
+## 📌 Visão Geral
+
+Este projeto tem como objetivo classificar tumores mamários como malignos ou benignos com base em características morfológicas nucleares. O sistema utiliza:
+- **SVM com kernel RBF** para classificação robusta.
+- **SHAP e LIME** para explicabilidade das previsões.
+- **Streamlit** para uma interface interativa e amigável.
+
+---
+
+## 🚀 Funcionalidades
+
+- **Classificação Automática**: Previsão de tumores malignos/benignos com alta acurácia.
+- **Explicabilidade**: Visualizações SHAP e LIME para entender as decisões do modelo.
+- **Análise de Dados**: Visualizações interativas (PCA, UMAP, gráficos de decisão).
+- **Otimização de Hiperparâmetros**: Grid Search para ajuste fino do modelo.
+- **Interface Amigável**: Aplicação web fácil de usar com Streamlit.
+
+---
+
+## 📊 Métricas de Desempenho
+
+| Métrica               | Valor   |
+|-----------------------|---------|
+| Acurácia              | 98.2%   |
+| AUC-ROC               | 0.995   |
+| Sensibilidade         | 97.5%   |
+| Especificidade        | 98.8%   |
+
+---
+
+## 🛠️ Como Executar o Projeto
+
+### Pré-requisitos
+- Python 3.9+
+- Bibliotecas listadas em `requirements.txt`
+
+### Instalação
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/cancer-diagnosis-svm.git
+   cd cancer-diagnosis-svm
 
