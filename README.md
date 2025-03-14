@@ -65,11 +65,8 @@ Abra o notebook SVM_project_Tumores_mamarios_predicao.ipynb no Google Colab ou e
 
 Certifique-se de que o modelo treinado foi salvo (ex.: svm_model.pkl).
 Rode o aplicativo:
-bash
-Copiar
-Editar
-streamlit run app.py
-Resultados e Discussão
+bash  Copiar  Editar   streamlit run app.py
+Resultados e Discussão:
 Métricas de Desempenho: Os modelos SVM com kernel RBF obtiveram uma acurácia de 97%, com precisão, recall e F1-score superiores, indicando que a abordagem não-linear se adapta melhor à complexidade dos dados.
 Calibração de Probabilidades: A calibração ajustou as previsões para refletirem probabilidades mais extremas (próximas a 0 ou 1), demonstrando maior convicção na classificação, o que é crucial em diagnósticos médicos.
 Visualizações: Gráficos de PCA, histogramas e boxplots auxiliaram na identificação da estrutura dos dados e no diagnóstico da separabilidade das classes.
