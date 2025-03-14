@@ -2,8 +2,6 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib
-matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import seaborn as sns
 import shap
@@ -172,7 +170,7 @@ def main():
     with tabs[0]:
         st.header("Análise Exploratória")
 
-        col1, col2 = st.columns(2)
+        col1 = st.columns(1)
         with col1:
             st.subheader("Distribuição das Classes( Exemplo com os dados de teste:")
             class_dist = pd.Series(y).map({0: 'Maligno', 1: 'Benigno'}).value_counts()
@@ -180,11 +178,73 @@ def main():
             class_dist.plot.pie(autopct='%1.1f%%', ax=ax)
             st.pyplot(fig)
 
-        with col2:
-            st.subheader("Visualização PCA (teste exemplo)")
+        with st.expander("🔬 Comparativo de Técnicas de Redução de Dimensionalidade", expanded=True):
+    technique = st.selectbox(
+        "Selecione a técnica:",
+        ["PCA", "t-SNE", "UMAP", "LDA", "Autoencoders"],
+        index=0
+    )
+
+    n_components = st.slider("Número de componentes", 2, 3, 2)
+    
+    if technique == "PCA":
+        st.subheader("Visualização PCA (teste exemplo)")
             fig = plot_decision_boundary(pca_result, y)
             st.pyplot(fig)
+        
+    elif technique == "t-SNE":
+        from sklearn.manifold import TSNE
+        reducer = TSNE(n_components=n_components, perplexity=30, random_state=42)
+        X_red = reducer.fit_transform(X_scaled)
+    elif technique == "UMAP":
+        import umap
+        reducer = umap.UMAP(n_components=n_components, random_state=42)
+        X_red = reducer.fit_transform(X_scaled)
+    elif technique == "LDA":
+        from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+        reducer = LinearDiscriminantAnalysis(n_components=n_components)
+        X_red = reducer.fit_transform(X_scaled, y)
+    else:
+        from tensorflow.keras.models import Model, Sequential
+        from tensorflow.keras.layers import Dense
+        # Implementação simplificada de Autoencoder
+        autoencoder = Sequential([
+            Dense(64, activation='relu', input_shape=(X.shape[1],)),
+            Dense(32, activation='relu'),
+            Dense(n_components, activation='linear'),
+            Dense(32, activation='relu'),
+            Dense(64, activation='relu'),
+            Dense(X.shape[1], activation='sigmoid')
+        ])
+        autoencoder.compile(optimizer='adam', loss='mse')
+        autoencoder.fit(X_scaled, X_scaled, epochs=50, batch_size=32, verbose=0)
+        encoder = Model(inputs=autoencoder.input, outputs=autoencoder.layers[2].output)
+        X_red = encoder.predict(X_scaled)
 
+    # Plot 3D interativo
+    if n_components == 3:
+        import plotly.express as px
+        df_plot = pd.DataFrame(X_red, columns=['C1', 'C2', 'C3'])
+        df_plot['Diagnóstico'] = y
+        fig = px.scatter_3d(df_plot, x='C1', y='C2', z='C3', color='Diagnóstico',
+                          color_continuous_scale=px.colors.diverging.Tealrose)
+        st.plotly_chart(fig)
+    else:
+        plt.figure(figsize=(10,8))
+        sns.scatterplot(x=X_red[:,0], y=X_red[:,1], hue=y, palette='coolwarm', s=60)
+        st.pyplot(plt)
+    
+    # Métricas comparativas
+    from sklearn.metrics import silhouette_score, davies_bouldin_score
+    st.subheader("Métricas de Qualidade:")
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.metric("Silhouette Score", f"{silhouette_score(X_red, y):.3f}")
+    with col2:
+        st.metric("Davies-Bouldin", f"{davies_bouldin_score(X_red, y):.3f}")
+    with col3:
+        if hasattr(reducer, 'explained_variance_ratio_'):
+            st.metric("Variância Explicada", f"{sum(reducer.explained_variance_ratio_):.1%}")
     with tabs[1]:
         st.header("Diagnóstico Personalizado")
 
