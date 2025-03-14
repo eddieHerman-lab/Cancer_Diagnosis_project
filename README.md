@@ -25,7 +25,7 @@ Validação e Interpretação: Avaliação dos modelos por meio de métricas (ac
 Metodologia
 
 1. Coleta e Preparação dos Dados
-2. 
+   
 Dataset: Breast Cancer Wisconsin (disponível no scikit-learn).
 Pré-processamento: Normalização das features e uso de class_weight='balanced' para mitigar problemas de desbalanceamento.
 
