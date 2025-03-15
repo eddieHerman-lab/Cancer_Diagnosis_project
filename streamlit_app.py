@@ -316,7 +316,7 @@ def main():
                 **LIME (Local Interpretable Model-agnostic Explanations)**  
                 - Cria modelo local simples para explicar cada caso
                 - Vermelho → características que apoiam a predição
-                - Azul → características que contradizem a predição
+                - Verde → características que contradizem a predição
                 - Mostra o peso relativo de cada fator
                 """)
                 st.image("images/limeEx.png",
